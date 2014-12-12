@@ -32,19 +32,19 @@ public class MainActivity extends Activity {
 	}
 	
 	private boolean isUp(int orientation) {
-		return orientation < 10 || orientation > 350;
+		return (orientation < 15 || orientation > 345) && orientation >= 0;
 	}
 	
 	private boolean isRight(int orientation) {
-		return orientation < 100 && orientation > 80;
+		return orientation < 105 && orientation > 75;
 	}
 	
 	private boolean isLeft(int orientation) {
-		return orientation < 280 && orientation > 260;
+		return orientation < 285 && orientation > 255;
 	}
 	
 	private boolean isDown(int orientation) {
-		return orientation < 190 && orientation > 170;
+		return orientation < 195 && orientation > 165;
 	}
 	
 	
@@ -78,7 +78,6 @@ public class MainActivity extends Activity {
 		if (!md.isPlaying() && shouldPlaySound()) {
 			AssetFileDescriptor afd = selectSound();
 			try {
-				updateUI();	
 				md.reset();
 				md.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
 				md.prepare();
@@ -124,6 +123,7 @@ public class MainActivity extends Activity {
 				mOldOrientation = mOrientation;
 				mOrientation = orientation;
 				playAudio();
+				updateUI();	
 			}
     	};
     	
